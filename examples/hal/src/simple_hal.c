@@ -103,6 +103,7 @@ void hal_led_pin_set(uint32_t pin, bool value)
     {
         NRF_GPIO->OUTSET = (1 << pin);
     }
+
 }
 
 void hal_led_mask_set(uint32_t led_mask, bool value)
@@ -135,6 +136,7 @@ void hal_leds_init(void)
         NRF_GPIO->PIN_CNF[i] = LED_PIN_CONFIG;
         NRF_GPIO->OUTSET = 1UL << i;
     }
+
 }
 
 uint32_t hal_buttons_init(hal_button_handler_cb_t cb)

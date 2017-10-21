@@ -44,6 +44,9 @@
 #include "log.h"
 #include "access.h"
 #include "nrf_mesh_assert.h"
+#include "nrf_gpio.h"
+
+#define LED_EXTERNAL 29
 
 /*****************************************************************************
  * Static functions
@@ -116,9 +119,12 @@ extern uint16_t global_server_id;
  
       if(value == true){
            __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "\n Destination_id::: %u  action::: open\n", server_id);
+           nrf_gpio_pin_set(LED_EXTERNAL);
+           
         
        } else {
            __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "\n Destination_id::: %u  action::: close\n", server_id);
+           nrf_gpio_pin_clear(LED_EXTERNAL);
        }
 
       publish_state(p_server, value);

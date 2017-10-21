@@ -15,6 +15,8 @@
   <ProjectSessionItem path="light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha;light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha"/>
   <ProjectSessionItem path="light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha;light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha;Access"/>
   <ProjectSessionItem path="light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha;light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha;Application"/>
+  <ProjectSessionItem path="light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha;light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha;Core"/>
+  <ProjectSessionItem path="light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha;light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha;Simple OnOff Model"/>
  </Project>
  <Register1/>
  <Register2/>
@@ -36,8 +38,11 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" useBinaryEdit="0" left="0" path="src/main.c" debugPath="src/main.c" selected="0" top="81" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" useBinaryEdit="0" left="0" path="../../nrf_mesh_sdk.c" debugPath="../../nrf_mesh_sdk.c" selected="1" top="33" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="74" useTextEdit="1" useBinaryEdit="0" left="0" path="src/main.c" debugPath="src/main.c" selected="1" top="42" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" useBinaryEdit="0" left="0" path="../../nrf_mesh_sdk.c" debugPath="../../nrf_mesh_sdk.c" selected="0" top="9" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="119" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../models/simple_on_off/src/simple_on_off_server.c" debugPath="../../../models/simple_on_off/src/simple_on_off_server.c" selected="0" top="92" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="89" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../models/simple_on_off/include/simple_on_off_common.h" debugPath="../../../models/simple_on_off/include/simple_on_off_common.h" selected="0" top="54" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="221" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../mesh/core/src/nrf_mesh.c" debugPath="../../../mesh/core/src/nrf_mesh.c" selected="0" top="221" codecName="Default"/>
  </Files>
  <ARMCrossStudioWindow activeProject="light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Debug" debugSearchFileMap="" fileDialogInitialDirectory="C:/Users/Dawid/Downloads/Praca Inzynierska/nRF5_SDK_13.1.0_7ca7556/components/toolchain/embedded_studio" debugSearchPath="" autoConnectCapabilities="3199"/>
 </session>

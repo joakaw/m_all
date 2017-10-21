@@ -65,6 +65,7 @@
 
 #define LED_PIN_NUMBER (BSP_LED_0)
 #define LED_PIN_MASK   (1u << LED_PIN_NUMBER)
+#define LED_EXTERNAL 29
 
 
 /*****************************************************************************
@@ -115,14 +116,20 @@ static bool set_cb(const simple_on_off_server_t * p_server, bool value)
     return value;
 }
 
+static void set_external_pin_output(uint8_t pin_number)
+{
+  nrf_gpio_cfg_output(pin_number);
+}
 int main(void)
 {
+
     __LOG_INIT(LOG_SRC_APP | LOG_SRC_ACCESS, LOG_LEVEL_INFO, LOG_CALLBACK_DEFAULT);
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "----- BLE Mesh Light Switch Server Demo -----\n");
 
     hal_leds_init();
-
-    static const uint8_t static_auth_data[NRF_MESH_KEY_SIZE] = STATIC_AUTH_DATA;
+    set_external_pin_output(LED_EXTERNAL);
+ 
+      static const uint8_t static_auth_data[NRF_MESH_KEY_SIZE] = STATIC_AUTH_DATA;
     static nrf_mesh_node_config_params_t config_params;
     config_params.prov_caps.num_elements = ACCESS_ELEMENT_COUNT;
     config_params.prov_caps.algorithms = NRF_MESH_PROV_ALGORITHM_FIPS_P256EC;
@@ -144,7 +151,7 @@ int main(void)
     ERROR_CHECK(nrf_mesh_node_config(&config_params));
 
     while (true)
-    {
+    { 
         (void)nrf_mesh_process();
     }
 }
