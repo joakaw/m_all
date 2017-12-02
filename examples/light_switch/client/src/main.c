@@ -312,9 +312,9 @@ static void health_event_cb(const health_client_t * p_client, const health_clien
     }
 }
 
-static void button_event_handler(uint32_t button_number)
+/*static void button_event_handler(uint32_t button_number)
 {
-  /*  __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Button %u pressed\n", button_number);
+    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Button %u pressed\n", button_number);
     if (m_configured_devices == 0)
     {
         __LOG(LOG_SRC_APP, LOG_LEVEL_WARN, "No devices provisioned\n");
@@ -324,7 +324,7 @@ static void button_event_handler(uint32_t button_number)
     {
         __LOG(LOG_SRC_APP, LOG_LEVEL_WARN, "Device %u not provisioned yet.\n", button_number);
         return;
-    }*/
+    }
 
     uint32_t status = NRF_SUCCESS;
     switch (button_number)
@@ -337,15 +337,14 @@ static void button_event_handler(uint32_t button_number)
           break;
         case 2:
         status = send_open_unreliable(&m_clients[GROUP_CLIENT_INDEX], 2 , 2);
-            /* Invert LED. */
-       //     status = simple_on_off_client_set(&m_clients[button_number],
-        //                                      !hal_led_pin_get(BSP_LED_0 + button_number));
+      
+           status = simple_on_off_client_set(&m_clients[button_number],
+                                              !hal_led_pin_get(BSP_LED_0 + button_number));
             break;
         case 3:
         status = send_close_unreliable(&m_clients[GROUP_CLIENT_INDEX], 2 , 2);
-            /* Group message: invert all LEDs. */
-         //   status = simple_on_off_client_set_unreliable(&m_clients[GROUP_CLIENT_INDEX],
-          //                                               !hal_led_pin_get(BSP_LED_0 + button_number), 3);
+          
+                                                      !hal_led_pin_get(BSP_LED_0 + button_number), 3);
             break;
         default:
             break;
@@ -363,7 +362,7 @@ static void button_event_handler(uint32_t button_number)
     {
         ERROR_CHECK(status);
     }
-}
+}*/
 
 /*****************************************************************************
  * Event callbacks from the provisioner
@@ -431,7 +430,7 @@ int main(void)
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "----- BLE Mesh Light Switch Client Demo -----\n");
 
     hal_leds_init();
-    ERROR_CHECK(hal_buttons_init(button_event_handler));
+    ERROR_CHECK(hal_buttons_init(button_handler));
 
     /* Set the first LED */
     hal_led_pin_set(BSP_LED_0, true);

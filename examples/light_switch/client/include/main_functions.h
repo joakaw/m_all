@@ -8,7 +8,8 @@
 
 static void button_handler(uint32_t button_number);
 
-uint32_t send_open_main(simple_on_off_client_t * p_client, uint16_t destination_id, uint8_t repeats);
+uint32_t send_open_main(simple_on_off_client_t * p_client, uint16_t destination_id);
+uint32_t send_close_main(simple_on_off_client_t * p_client, uint16_t destination_id);
 
 
 #endif

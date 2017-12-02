@@ -276,30 +276,7 @@ uint32_t simple_on_off_client_set_unreliable(simple_on_off_client_t * p_client, 
     return status;
 }
 
-uint32_t send_open_unreliable(simple_on_off_client_t * p_client, uint16_t destination_id, uint8_t repeats)
-{
-    message_to_send_via_mesh_unreliable_t set_unreliable;
-    set_unreliable.on_off = true;
-    set_unreliable.tid = m_tid++;
-    set_unreliable.destination_id = destination_id;
 
-    access_message_tx_t message;
-    message.opcode.opcode = SIMPLE_ON_OFF_OPCODE_SET_UNRELIABLE;
-    message.opcode.company_id = ACCESS_COMPANY_ID_NORDIC;
-    message.p_buffer = (const uint8_t*) &set_unreliable;
-    message.length = sizeof(set_unreliable);
-
-    uint32_t status = NRF_SUCCESS;
-    for (uint8_t i = 0; i < repeats; ++i)
-    {
-        status = access_model_publish(p_client->model_handle, &message);
-        if (status != NRF_SUCCESS)
-        {
-            break;
-        }
-    }
-    return status;
-}
 
 uint32_t send_close_unreliable(simple_on_off_client_t * p_client, uint16_t destination_id, uint8_t repeats)
 {
