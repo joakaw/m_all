@@ -1,5 +1,6 @@
 
 #include "main_functions.h"
+#include "main_structures.h"
 
 #include "nrf_sdm.h"
 #include "boards.h"
@@ -7,8 +8,6 @@
 #include "log.h"
 
 #include "simple_on_off_client.h"
-
-
 
 
 #define CLIENT_COUNT        (SERVER_COUNT + 1)
@@ -64,7 +63,7 @@ static void button_handler(uint32_t button_number){
 
  uint32_t send_open_main(simple_on_off_client_t * p_client, uint16_t destination_id)
 {
-    message_to_send_via_mesh_unreliable_t set_unreliable;
+    message_main_t set_unreliable;
     set_unreliable.on_off = true;
     set_unreliable.tid = m_tid++;
     set_unreliable.destination_id = destination_id;
@@ -90,7 +89,7 @@ static void button_handler(uint32_t button_number){
 
 uint32_t send_close_main(simple_on_off_client_t * p_client, uint16_t destination_id)
 {
-    message_to_send_via_mesh_unreliable_t set_unreliable;
+    message_main_t set_unreliable;
     set_unreliable.on_off = false;
     set_unreliable.tid = m_tid++;
     set_unreliable.destination_id = destination_id;

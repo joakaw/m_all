@@ -138,6 +138,7 @@
       c_user_include_directories="." />
     <file file_name="include/main_functions.c" />
     <file file_name="include/main_functions.h" />
+    <file file_name="../include/main_structures.h" />
   </project>
   <configuration
     Name="Debug"

@@ -82,13 +82,6 @@ typedef struct __attribute((packed))
     uint8_t tid;    /**< Transaction number. */
 } simple_on_off_msg_set_unreliable_t;
 
-typedef struct __attribute((packed))
-{
-    uint8_t on_off; /**< State to set. */
-    uint8_t tid;    /**< Transaction number. */
-    uint16_t destination_id; 
-} message_to_send_via_mesh_unreliable_t;
-
 /** Message format for the Simple OnOff Status message. */
 typedef struct __attribute((packed))
 {

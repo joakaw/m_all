@@ -151,7 +151,6 @@ uint32_t simple_on_off_client_set(simple_on_off_client_t * p_client, bool on_off
  *                                  opcode format.
  */
 uint32_t simple_on_off_client_set_unreliable(simple_on_off_client_t * p_client, bool on_off, uint8_t repeats);
-uint32_t send_close_unreliable(simple_on_off_client_t * p_client, uint16_t destination_id, uint8_t repeats);
 
 /**
  * Gets the state of the Simple OnOff server.
