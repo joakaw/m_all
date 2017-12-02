@@ -67,6 +67,9 @@
 
 #include "light_switch_example_common.h"
 
+#include "main_functions.h"
+#include "main_functions.c"
+
 /*****************************************************************************
  * Definitions
  *****************************************************************************/
@@ -441,7 +444,7 @@ int main(void)
         if (key >= '0' && key <= '3')
         {
             uint32_t button_number = key - '0';
-            button_event_handler(button_number);
+            button_handler(button_number);
         }
         (void)nrf_mesh_process();
     }
