@@ -39,6 +39,7 @@
 #include "simple_on_off_common.h"
 #include "main_structures.h"
 
+
 #include <stdint.h>
 #include <stddef.h>
 
@@ -107,6 +108,32 @@ static void handle_get_cb(access_model_handle_t handle, const access_message_rx_
 static void handle_set_unreliable_cb(access_model_handle_t handle, const access_message_rx_t * p_message, void * p_args)
 {
 extern uint16_t global_server_id;
+ 
+
+    uint16_t server_id = (((message_main_t*) p_message->p_data)->destination_id);
+
+    if(server_id == global_server_id)
+    {
+      simple_on_off_server_t * p_server = p_args;
+      NRF_MESH_ASSERT(p_server->set_cb != NULL);
+      bool value = (((message_main_t*) p_message->p_data)->on_off) > 0;
+      value = p_server->set_cb(p_server, value);
+ 
+      if(value == true){
+           nrf_gpio_pin_set(LED_EXTERNAL);
+           
+        
+       } else {
+           nrf_gpio_pin_clear(LED_EXTERNAL);
+       }
+
+      publish_state(p_server, value);
+    }
+}
+
+static void  handle_message_cb(access_model_handle_t handle, const access_message_rx_t * p_message, void * p_args){
+
+extern uint16_t global_server_id;
  __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "\n Global id: %u\n", global_server_id);
 
     uint16_t server_id = (((message_main_t*) p_message->p_data)->destination_id);
@@ -130,6 +157,8 @@ extern uint16_t global_server_id;
 
       publish_state(p_server, value);
     }
+
+
 }
 
 static const access_opcode_handler_t m_opcode_handlers[] =

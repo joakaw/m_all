@@ -19,6 +19,9 @@ static simple_on_off_client_t m_clients[CLIENT_COUNT];
 static uint8_t m_tid;
 
 
+uint8_t repeats = 2;
+
+
 static void button_handler(uint32_t button_number){
 
 
@@ -26,19 +29,19 @@ static void button_handler(uint32_t button_number){
     switch (button_number)
     {
         case 0: 
-          status = send_open_main(&m_clients[GROUP_CLIENT_INDEX], 1);
+          status = send_open(&m_clients[GROUP_CLIENT_INDEX], 1);
           __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "send open to 1 server.\n");
           break;
         case 1:
-          status = send_close_main(&m_clients[GROUP_CLIENT_INDEX], 1);
+          status = send_close(&m_clients[GROUP_CLIENT_INDEX], 1);
           __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "send close to 1 server.\n");
           break;
         case 2:
-          status = send_open_main(&m_clients[GROUP_CLIENT_INDEX], 2);
+          status = send_open(&m_clients[GROUP_CLIENT_INDEX], 2);
           __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "send open to 2 server.\n");
             break;
         case 3:
-        status = send_close_main(&m_clients[GROUP_CLIENT_INDEX], 2);
+        status = send_close(&m_clients[GROUP_CLIENT_INDEX], 2);
         __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "send close to 2 server.\n");
             break;
         default:
@@ -61,21 +64,20 @@ static void button_handler(uint32_t button_number){
  }
 
 
- uint32_t send_open_main(simple_on_off_client_t * p_client, uint16_t destination_id)
+ uint32_t send_open(simple_on_off_client_t * p_client, uint16_t destination_id)
 {
-    message_main_t set_unreliable;
-    set_unreliable.on_off = true;
-    set_unreliable.tid = m_tid++;
-    set_unreliable.destination_id = destination_id;
+    message_main_t message_set_state;
+    message_set_state.on_off = true;
+    message_set_state.tid = m_tid++;
+    message_set_state.destination_id = destination_id;
 
     access_message_tx_t message;
     message.opcode.opcode = SIMPLE_ON_OFF_OPCODE_SET_UNRELIABLE;
     message.opcode.company_id = ACCESS_COMPANY_ID_NORDIC;
-    message.p_buffer = (const uint8_t*) &set_unreliable;
-    message.length = sizeof(set_unreliable);
+    message.p_buffer = (const uint8_t*) &message_set_state;
+    message.length = sizeof(message_set_state);
 
     uint32_t status = NRF_SUCCESS;
-    uint8_t repeats = 2;
     for (uint8_t i = 0; i < repeats; ++i)
     {
         status = access_model_publish(p_client->model_handle, &message);
@@ -87,21 +89,21 @@ static void button_handler(uint32_t button_number){
     return status;
 }
 
-uint32_t send_close_main(simple_on_off_client_t * p_client, uint16_t destination_id)
+uint32_t send_close(simple_on_off_client_t * p_client, uint16_t destination_id)
 {
-    message_main_t set_unreliable;
-    set_unreliable.on_off = false;
-    set_unreliable.tid = m_tid++;
-    set_unreliable.destination_id = destination_id;
+    message_main_t message_set_state;
+    message_set_state.on_off = false;
+    message_set_state.tid = m_tid++;
+    message_set_state.destination_id = destination_id;
 
     access_message_tx_t message;
     message.opcode.opcode = SIMPLE_ON_OFF_OPCODE_SET_UNRELIABLE;
     message.opcode.company_id = ACCESS_COMPANY_ID_NORDIC;
-    message.p_buffer = (const uint8_t*) &set_unreliable;
-    message.length = sizeof(set_unreliable);
+    message.p_buffer = (const uint8_t*) &message_set_state;
+    message.length = sizeof(message_set_state);
 
     uint32_t status = NRF_SUCCESS;
-    uint8_t repeats = 2;
+    
     for (uint8_t i = 0; i < repeats; ++i)
     {
         status = access_model_publish(p_client->model_handle, &message);

@@ -198,59 +198,6 @@ uint32_t simple_on_off_client_set(simple_on_off_client_t * p_client, bool on_off
 
 }
 
-uint32_t send_open(simple_on_off_client_t * p_client, uint16_t destination_id)
-{
-    if (p_client == NULL || p_client->status_cb == NULL)
-    {
-        return NRF_ERROR_NULL;
-    }
-    else if (p_client->state_id.reliable_transfer_active)
-    {
-        return NRF_ERROR_INVALID_STATE;
-    }
-
-    p_client->state_id.data.on_off = true;
-    p_client->state_id.data.tid = m_tid++;
-    p_client->state_id.data.destination_id = destination_id;
-
-    uint32_t status = send_reliable_message(p_client,
-                                            SIMPLE_ON_OFF_OPCODE_SET,
-                                            (const uint8_t *)&p_client->state_id.data,
-                                            sizeof(message_to_send_via_mesh_t));
-    if (status == NRF_SUCCESS)
-    {
-        p_client->state_id.reliable_transfer_active = true;
-    }
-    return status;
-}
-
-
-uint32_t send_close(simple_on_off_client_t * p_client, uint16_t destination_id)
-{
-    if (p_client == NULL || p_client->status_cb == NULL)
-    {
-        return NRF_ERROR_NULL;
-    }
-    else if (p_client->state_id.reliable_transfer_active)
-    {
-        return NRF_ERROR_INVALID_STATE;
-    }
-
-    p_client->state_id.data.on_off = false;
-    p_client->state_id.data.tid = m_tid++;
-    p_client->state_id.data.destination_id = destination_id;
-
-    uint32_t status = send_reliable_message(p_client,
-                                            SIMPLE_ON_OFF_OPCODE_SET,
-                                            (const uint8_t *)&p_client->state_id.data,
-                                            sizeof(message_to_send_via_mesh_t));
-    if (status == NRF_SUCCESS)
-    {
-        p_client->state_id.reliable_transfer_active = true;
-    }
-    return status;
-}
-
 
 uint32_t simple_on_off_client_set_unreliable(simple_on_off_client_t * p_client, bool on_off, uint8_t repeats)
 {
