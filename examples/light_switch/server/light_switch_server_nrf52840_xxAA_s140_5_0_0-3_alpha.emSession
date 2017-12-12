@@ -36,12 +36,13 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" useBinaryEdit="0" left="0" path="src/main.c" debugPath="src/main.c" selected="0" top="112" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="49" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../models/simple_on_off/src/simple_on_off_server.c" debugPath="../../../models/simple_on_off/src/simple_on_off_server.c" selected="1" top="30" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="10" useTextEdit="1" useBinaryEdit="0" left="0" path="../include/main_structures.h" debugPath="../include/main_structures.h" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" useBinaryEdit="0" left="0" path="locks_controller.c" debugPath="locks_controller.c" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="630" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../external/nRF5_SDK_14.0.0_3bcc1f7/components/drivers_nrf/hal/nrf_gpio.h" debugPath="../../../external/nRF5_SDK_14.0.0_3bcc1f7/components/drivers_nrf/hal/nrf_gpio.h" selected="0" top="616" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="159" useTextEdit="1" useBinaryEdit="0" left="0" path="src/main.c" debugPath="src/main.c" selected="1" top="123" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="114" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../models/simple_on_off/src/simple_on_off_server.c" debugPath="../../../models/simple_on_off/src/simple_on_off_server.c" selected="0" top="108" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="14" useTextEdit="1" useBinaryEdit="0" left="0" path="../include/main_structures.h" debugPath="../include/main_structures.h" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="264" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../external/nRF5_SDK_14.0.0_3bcc1f7/components/drivers_nrf/hal/nrf_gpio.h" debugPath="../../../external/nRF5_SDK_14.0.0_3bcc1f7/components/drivers_nrf/hal/nrf_gpio.h" selected="0" top="264" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="98" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../models/simple_on_off/include/simple_on_off_server.h" debugPath="../../../models/simple_on_off/include/simple_on_off_server.h" selected="0" top="84" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="13" useTextEdit="1" useBinaryEdit="0" left="0" path="../include/locks_controller.h" debugPath="../include/locks_controller.h" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="2" useTextEdit="1" useBinaryEdit="0" left="0" path="../include/locks_controller.c" debugPath="../include/locks_controller.c" selected="0" top="0" codecName="Default"/>
  </Files>
- <ARMCrossStudioWindow activeProject="light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Debug" debugSearchFileMap="" fileDialogInitialDirectory="C:/Users/joann/Downloads/m_all/examples/light_switch/server" debugSearchPath="" autoConnectCapabilities="3199"/>
+ <ARMCrossStudioWindow activeProject="light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Debug" debugSearchFileMap="" fileDialogInitialDirectory="C:/Users/joann/Downloads/m_all/examples/light_switch/include" debugSearchPath="" autoConnectCapabilities="3199"/>
 </session>

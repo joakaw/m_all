@@ -44,6 +44,15 @@
 #include "boards.h"
 #include "nrf_mesh_sdk.h"
 #include "nrf_delay.h"
+#include "simple_hal.h"
+
+/*UART*/
+#include "app_uart.h"
+#if defined (UART_PRESENT)
+#include "nrf_uart.h"
+#endif
+
+
 
 /* Core */
 #include "nrf_mesh.h"
@@ -77,6 +86,15 @@
 #define CLIENT_COUNT        (SERVER_COUNT + 1)
 #define GROUP_CLIENT_INDEX  (SERVER_COUNT)
 #define BUTTON_NUMBER_GROUP (5)
+#define LED_EXTERNAL 29
+
+
+
+//------UART---------
+#define MAX_TEST_DATA_BYTES     (15U)                /**< max number of test bytes to be used for tx and rx. */
+#define UART_TX_BUF_SIZE 256                         /**< UART TX buffer size. */
+#define UART_RX_BUF_SIZE 256                         /**< UART RX buffer size. */
+
 
 /*****************************************************************************
  * Static data
@@ -424,27 +442,183 @@ void provisioner_prov_complete_cb(const nrf_mesh_evt_prov_complete_t * p_prov_da
     provisioner_configure(UNPROV_START_ADDRESS + m_configured_devices);
 }
 
+static void set_external_pin_output(uint8_t pin_number)
+{
+  nrf_gpio_cfg_output(pin_number);
+}
+
+
+//-------------------------------UART----------------------------------------------------------
+
+
+
+void uart_event_handle(app_uart_evt_t * p_event)
+{
+    static uint8_t data_array[20];
+    static uint8_t index = 0;
+    uint32_t       err_code;
+
+    switch (p_event->evt_type)
+    {
+        case APP_UART_DATA_READY:
+            UNUSED_VARIABLE(app_uart_get(&data_array[index]));
+            index++;
+
+
+            message_handler(data_array[0], data_array[1]);
+
+//
+//            if(data_array[0]=='o'){
+//                //set_lock_state(OPEN);
+//
+//
+//                
+//
+//                hal_led_pin_set(BSP_LED_1, true);
+//            }
+//            if(data_array[0]=='c'){
+//                set_lock_state(CLOSED);
+//                hal_led_pin_set(BSP_LED_1, false);
+//            }
+
+
+            if ((data_array[index - 1] == '\n') )
+            {
+                do
+                {
+                    uint16_t length = (uint16_t)index;
+                    
+                    if ( (err_code != NRF_ERROR_INVALID_STATE) && (err_code != NRF_ERROR_BUSY) )
+                    {
+                        APP_ERROR_CHECK(err_code);
+                    }
+                } while (err_code == NRF_ERROR_BUSY);
+
+                index = 0;
+            }
+            break;
+
+        case APP_UART_COMMUNICATION_ERROR:
+            APP_ERROR_HANDLER(p_event->data.error_communication);
+            break;
+
+        case APP_UART_FIFO_ERROR:
+            APP_ERROR_HANDLER(p_event->data.error_code);
+            break;
+
+        default:
+            break;
+    }
+}
+
+
+void uart_error_handle(app_uart_evt_t * p_event)
+{
+    if (p_event->evt_type == APP_UART_COMMUNICATION_ERROR)
+    {
+        APP_ERROR_HANDLER(p_event->data.error_communication);
+    }
+    else if (p_event->evt_type == APP_UART_FIFO_ERROR)
+    {
+        APP_ERROR_HANDLER(p_event->data.error_code);
+    }
+}
+
+/* When UART is used for communication with the host do not use flow control.*/
+#define UART_HWFC APP_UART_FLOW_CONTROL_DISABLED
+
+
+/**@brief  Function for initializing the UART module.
+ */
+/**@snippet [UART Initialization] */
+static void uart_init(void)
+{
+    uint32_t                     err_code;
+    const app_uart_comm_params_t comm_params =
+      {
+          RX_PIN_NUMBER,
+          TX_PIN_NUMBER,
+          RTS_PIN_NUMBER,
+          CTS_PIN_NUMBER,
+          UART_HWFC,
+          false,
+          NRF_UART_BAUDRATE_115200
+      };
+
+    APP_UART_FIFO_INIT(&comm_params,
+                         UART_RX_BUF_SIZE,
+                         UART_TX_BUF_SIZE,
+                         uart_event_handle,
+                         APP_IRQ_PRIORITY_LOWEST,
+                         err_code);
+
+    APP_ERROR_CHECK(err_code);
+
+}
+
+
+
 int main(void)
 {
+   ///UART
+ uint32_t err_code;
+
+   // bsp_board_leds_init();
+
+    const app_uart_comm_params_t comm_params =
+      {
+          RX_PIN_NUMBER,
+          TX_PIN_NUMBER,
+          RTS_PIN_NUMBER,
+          CTS_PIN_NUMBER,
+          UART_HWFC,
+          false,
+          NRF_UART_BAUDRATE_115200
+      };
+
+    APP_UART_FIFO_INIT(&comm_params,
+                         UART_RX_BUF_SIZE,
+                         UART_TX_BUF_SIZE,
+                         uart_event_handle,
+                         APP_IRQ_PRIORITY_LOWEST,
+                         err_code);
+
+    APP_ERROR_CHECK(err_code);
+
+
+
+/////////////////
+
+
+
     __LOG_INIT(LOG_SRC_APP | LOG_SRC_ACCESS, LOG_LEVEL_INFO, LOG_CALLBACK_DEFAULT);
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "----- BLE Mesh Light Switch Client Demo -----\n");
 
     hal_leds_init();
     ERROR_CHECK(hal_buttons_init(message_handler));
+    set_external_pin_output(LED_EXTERNAL);
 
     /* Set the first LED */
     hal_led_pin_set(BSP_LED_0, true);
     mesh_core_setup();
     access_setup();
-
+#ifndef ENABLE_LOOPBACK_TEST
+    printf("\r\nStart: \r\n");
     while (true)
     {
-        int key = SEGGER_RTT_GetKey(); /* Returns -1 if there is no data. */
-        if (key >= '0' && key <= '3')
-        {
-            uint32_t button_number = key - '0';
-            message_handler(button_number);
-        }
+   
+
+//        int key = SEGGER_RTT_GetKey(); /* Returns -1 if there is no data. */
+//        if (key >= '0' && key <= '3')
+//        {
+//            uint32_t button_number = key - '0';
+//            message_handler(button_number);
+//        }
         (void)nrf_mesh_process();
+
+          uint8_t cr;
+       // while (app_uart_get(&cr) != NRF_SUCCESS);
+      //  while (app_uart_put(cr) != NRF_SUCCESS);
     }
+    #endif
 }

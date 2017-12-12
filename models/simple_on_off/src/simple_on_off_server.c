@@ -109,13 +109,13 @@ static void handle_set_unreliable_cb(access_model_handle_t handle, const access_
 {
     extern uint16_t global_server_id;
 
-    uint16_t server_id = (((message_main_t*) p_message->p_data)->destination_id); //check if message is dedicated to this server
+    uint16_t dest_id = (((message_main_t*) p_message->p_data)->destination_id); //check if message is dedicated to this server
+    bool value = (((message_main_t*) p_message->p_data)->on_off) > 0;
 
-    if(server_id == global_server_id)
+    if(dest_id == global_server_id)
     {
       simple_on_off_server_t * p_server = p_args;
-      NRF_MESH_ASSERT(p_server->set_cb != NULL);
-      bool value = (((message_main_t*) p_message->p_data)->on_off) > 0;
+      NRF_MESH_ASSERT(p_server->set_cb != NULL);   
       value = p_server->set_cb(p_server, value);
  
       if(value == true){                                                          //execute opening

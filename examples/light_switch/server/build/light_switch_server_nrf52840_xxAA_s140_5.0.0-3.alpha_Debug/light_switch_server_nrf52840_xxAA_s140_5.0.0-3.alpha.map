@@ -11058,7 +11058,7 @@ OUTPUT(build/light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/light_sw
  .debug_frame   0x000000000000845c       0x20 build/light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/obj/locks_controller.o
  .debug_frame   0x000000000000847c       0xb0 D:/Programs/SEGGER/SEGGER Embedded Studio 3.28/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
 
-.debug_info     0x0000000000000000    0x64ffa
+.debug_info     0x0000000000000000    0x65000
  .debug_info    0x0000000000000000     0x1393 build/light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/obj/main.o
  .debug_info    0x0000000000001393     0x2b65 build/light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/obj/nrf_mesh_sdk.o
  .debug_info    0x0000000000003ef8     0x1162 build/light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/obj/simple_hal.o
@@ -11127,8 +11127,8 @@ OUTPUT(build/light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/light_sw
  .debug_info    0x000000000005c9e6     0x50f4 build/light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/obj/config_server.o
  .debug_info    0x0000000000061ada      0x11a build/light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/obj/packed_index_list.o
  .debug_info    0x0000000000061bf4     0x1ddc build/light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/obj/health_server.o
- .debug_info    0x00000000000639d0      0xdde build/light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/obj/simple_on_off_server.o
- .debug_info    0x00000000000647ae      0x84c build/light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/obj/locks_controller.o
+ .debug_info    0x00000000000639d0      0xde4 build/light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/obj/simple_on_off_server.o
+ .debug_info    0x00000000000647b4      0x84c build/light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/obj/locks_controller.o
 
 .debug_abbrev   0x0000000000000000     0xcea3
  .debug_abbrev  0x0000000000000000      0x300 build/light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/obj/main.o
@@ -11202,7 +11202,7 @@ OUTPUT(build/light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/light_sw
  .debug_abbrev  0x000000000000ca2f      0x269 build/light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/obj/simple_on_off_server.o
  .debug_abbrev  0x000000000000cc98      0x20b build/light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/obj/locks_controller.o
 
-.debug_loc      0x0000000000000000    0x25628
+.debug_loc      0x0000000000000000    0x255d0
  .debug_loc     0x0000000000000000      0x220 build/light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/obj/main.o
  .debug_loc     0x0000000000000220      0x328 build/light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/obj/nrf_mesh_sdk.o
  .debug_loc     0x0000000000000548      0x1ec build/light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/obj/simple_hal.o
@@ -11266,8 +11266,8 @@ OUTPUT(build/light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/light_sw
  .debug_loc     0x0000000000020802     0x311c build/light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/obj/config_server.o
  .debug_loc     0x000000000002391e       0x5f build/light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/obj/packed_index_list.o
  .debug_loc     0x000000000002397d     0x1703 build/light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/obj/health_server.o
- .debug_loc     0x0000000000025080      0x568 build/light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/obj/simple_on_off_server.o
- .debug_loc     0x00000000000255e8       0x40 build/light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/obj/locks_controller.o
+ .debug_loc     0x0000000000025080      0x510 build/light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/obj/simple_on_off_server.o
+ .debug_loc     0x0000000000025590       0x40 build/light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/obj/locks_controller.o
 
 .debug_pubnames
                 0x0000000000000000    0x13f6a
@@ -12031,7 +12031,7 @@ OUTPUT(build/light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/light_sw
  .debug_line    0x000000000001f47c      0x61a build/light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/obj/simple_on_off_server.o
  .debug_line    0x000000000001fa96      0x34c build/light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/obj/locks_controller.o
 
-.debug_str      0x0000000000000000    0x86f10
+.debug_str      0x0000000000000000    0x86f18
  .debug_str     0x0000000000000000    0x6cce4 build/light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/obj/main.o
                                       0x6d9c0 (size before relaxing)
  .debug_str     0x000000000006cce4     0x1736 build/light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/obj/nrf_mesh_sdk.o
@@ -12164,9 +12164,9 @@ OUTPUT(build/light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/light_sw
                                        0x2c31 (size before relaxing)
  .debug_str     0x0000000000086643      0x658 build/light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/obj/health_server.o
                                       0x6b360 (size before relaxing)
- .debug_str     0x0000000000086c9b      0x1bb build/light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/obj/simple_on_off_server.o
-                                      0x6a479 (size before relaxing)
- .debug_str     0x0000000000086e56       0xba build/light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/obj/locks_controller.o
+ .debug_str     0x0000000000086c9b      0x1c3 build/light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/obj/simple_on_off_server.o
+                                      0x6a477 (size before relaxing)
+ .debug_str     0x0000000000086e5e       0xba build/light_switch_server_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/obj/locks_controller.o
                                       0x637fe (size before relaxing)
 
 .comment        0x0000000000000000       0x4c
