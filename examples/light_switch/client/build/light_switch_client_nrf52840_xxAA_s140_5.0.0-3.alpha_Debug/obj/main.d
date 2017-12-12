@@ -50,7 +50,7 @@ build/light_switch_client_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/obj/main.o: \
  ../../../mesh/core/api/nrf_mesh_defines.h \
  ../../../mesh/core/api/nrf_mesh_config_core.h \
  ../../../external/nRF5_SDK_14.0.0_3bcc1f7/components/drivers_nrf/delay/nrf_delay.h \
- ../../../mesh/core/api/nrf_mesh_events.h \
+ ../../hal/include/simple_hal.h ../../../mesh/core/api/nrf_mesh_events.h \
  ../../../mesh/core/api/nrf_mesh.h \
  ../../../mesh/dfu/api/nrf_mesh_dfu_types.h \
  ../../../mesh/core/api/nrf_mesh_assert.h \
@@ -71,8 +71,8 @@ build/light_switch_client_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/obj/main.o: \
  ../../../models/health/include/health_common.h \
  ../../../models/simple_on_off/include/simple_on_off_client.h \
  ../../../models/simple_on_off/include/simple_on_off_common.h \
- ../../hal/include/simple_hal.h include/provisioner.h \
- ../../../external/rtt/include/SEGGER_RTT.h \
+ include/provisioner.h ../../../external/rtt/include/SEGGER_RTT.h \
  ../../../external/rtt/include/SEGGER_RTT_Conf.h include/main_functions.h \
+ ../include/locks_controller.h ../include/main_structures.h \
  include/main_functions.c include/main_functions.h \
  ../include/main_structures.h

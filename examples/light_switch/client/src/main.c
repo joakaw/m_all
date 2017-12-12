@@ -44,6 +44,9 @@
 #include "boards.h"
 #include "nrf_mesh_sdk.h"
 #include "nrf_delay.h"
+#include "simple_hal.h"
+
+
 
 /* Core */
 #include "nrf_mesh.h"
@@ -77,6 +80,7 @@
 #define CLIENT_COUNT        (SERVER_COUNT + 1)
 #define GROUP_CLIENT_INDEX  (SERVER_COUNT)
 #define BUTTON_NUMBER_GROUP (5)
+#define LED_EXTERNAL 29
 
 /*****************************************************************************
  * Static data
@@ -424,6 +428,12 @@ void provisioner_prov_complete_cb(const nrf_mesh_evt_prov_complete_t * p_prov_da
     provisioner_configure(UNPROV_START_ADDRESS + m_configured_devices);
 }
 
+static void set_external_pin_output(uint8_t pin_number)
+{
+  nrf_gpio_cfg_output(pin_number);
+}
+
+
 int main(void)
 {
     __LOG_INIT(LOG_SRC_APP | LOG_SRC_ACCESS, LOG_LEVEL_INFO, LOG_CALLBACK_DEFAULT);
@@ -431,6 +441,7 @@ int main(void)
 
     hal_leds_init();
     ERROR_CHECK(hal_buttons_init(message_handler));
+    set_external_pin_output(LED_EXTERNAL);
 
     /* Set the first LED */
     hal_led_pin_set(BSP_LED_0, true);

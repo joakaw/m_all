@@ -39,6 +39,7 @@ build/light_switch_client_nrf52840_xxAA_s140_5.0.0-3.alpha_Debug/obj/main_functi
  ../../../external/softdevice/s140_5.0.0-3.alpha/s140_nrf52840_5.0.0-3.alpha_API/include/nrf_error_sdm.h \
  include/nrf_mesh_config_app.h ../include/light_switch_example_common.h \
  ../../../models/simple_on_off/include/simple_on_off_common.h \
+ ../include/locks_controller.h ../include/main_structures.h \
  ../include/main_structures.h \
  ../../../external/nRF5_SDK_14.0.0_3bcc1f7/components/boards/boards.h \
  ../../../external/nRF5_SDK_14.0.0_3bcc1f7/components/drivers_nrf/hal/nrf_gpio.h \
