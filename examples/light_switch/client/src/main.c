@@ -430,7 +430,7 @@ int main(void)
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "----- BLE Mesh Light Switch Client Demo -----\n");
 
     hal_leds_init();
-    ERROR_CHECK(hal_buttons_init(button_handler));
+    ERROR_CHECK(hal_buttons_init(message_handler));
 
     /* Set the first LED */
     hal_led_pin_set(BSP_LED_0, true);
@@ -443,7 +443,7 @@ int main(void)
         if (key >= '0' && key <= '3')
         {
             uint32_t button_number = key - '0';
-            button_handler(button_number);
+            message_handler(button_number);
         }
         (void)nrf_mesh_process();
     }

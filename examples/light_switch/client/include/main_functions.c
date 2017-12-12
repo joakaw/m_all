@@ -22,7 +22,7 @@ static uint8_t m_tid;
 uint8_t repeats = 2;
 
 
-static void button_handler(uint32_t button_number){
+static void message_handler(uint32_t button_number){
 
 
     uint32_t status = NRF_SUCCESS;

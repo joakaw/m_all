@@ -38,6 +38,8 @@
 #include "simple_on_off_server.h"
 #include "simple_on_off_common.h"
 #include "main_structures.h"
+#include "locks_controller.h"
+
 
 
 #include <stdint.h>
@@ -46,9 +48,7 @@
 #include "log.h"
 #include "access.h"
 #include "nrf_mesh_assert.h"
-#include "nrf_gpio.h"
 
-#define LED_EXTERNAL 29
 
 /*****************************************************************************
  * Static functions
@@ -107,36 +107,9 @@ static void handle_get_cb(access_model_handle_t handle, const access_message_rx_
 
 static void handle_set_unreliable_cb(access_model_handle_t handle, const access_message_rx_t * p_message, void * p_args)
 {
-extern uint16_t global_server_id;
- 
+    extern uint16_t global_server_id;
 
-    uint16_t server_id = (((message_main_t*) p_message->p_data)->destination_id);
-
-    if(server_id == global_server_id)
-    {
-      simple_on_off_server_t * p_server = p_args;
-      NRF_MESH_ASSERT(p_server->set_cb != NULL);
-      bool value = (((message_main_t*) p_message->p_data)->on_off) > 0;
-      value = p_server->set_cb(p_server, value);
- 
-      if(value == true){
-           nrf_gpio_pin_set(LED_EXTERNAL);
-           
-        
-       } else {
-           nrf_gpio_pin_clear(LED_EXTERNAL);
-       }
-
-      publish_state(p_server, value);
-    }
-}
-
-static void  handle_message_cb(access_model_handle_t handle, const access_message_rx_t * p_message, void * p_args){
-
-extern uint16_t global_server_id;
- __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "\n Global id: %u\n", global_server_id);
-
-    uint16_t server_id = (((message_main_t*) p_message->p_data)->destination_id);
+    uint16_t server_id = (((message_main_t*) p_message->p_data)->destination_id); //check if message is dedicated to this server
 
     if(server_id == global_server_id)
     {
@@ -145,21 +118,19 @@ extern uint16_t global_server_id;
       bool value = (((message_main_t*) p_message->p_data)->on_off) > 0;
       value = p_server->set_cb(p_server, value);
  
-      if(value == true){
-           __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "\n Destination_id::: %u  action::: open\n", server_id);
-           nrf_gpio_pin_set(LED_EXTERNAL);
-           
+      if(value == true){                                                          //execute opening
+ 
+           set_lock_state(OPEN);
         
-       } else {
-           __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "\n Destination_id::: %u  action::: close\n", server_id);
-           nrf_gpio_pin_clear(LED_EXTERNAL);
+       } else {                                                                    //execute closing
+           
+           set_lock_state(CLOSED);
        }
 
       publish_state(p_server, value);
     }
-
-
 }
+
 
 static const access_opcode_handler_t m_opcode_handlers[] =
 {
