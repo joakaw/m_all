@@ -46,12 +46,15 @@
 #include "nrf_delay.h"
 #include "simple_hal.h"
 
+<<<<<<< HEAD
 /*UART*/
 #include "app_uart.h"
 #if defined (UART_PRESENT)
 #include "nrf_uart.h"
 #endif
 
+=======
+>>>>>>> 62b668b5be013284a380a9de3fe4b637b3aca6ee
 
 
 /* Core */
@@ -87,6 +90,7 @@
 #define GROUP_CLIENT_INDEX  (SERVER_COUNT)
 #define BUTTON_NUMBER_GROUP (5)
 #define LED_EXTERNAL 29
+<<<<<<< HEAD
 
 
 
@@ -95,6 +99,8 @@
 #define UART_TX_BUF_SIZE 256                         /**< UART TX buffer size. */
 #define UART_RX_BUF_SIZE 256                         /**< UART RX buffer size. */
 
+=======
+>>>>>>> 62b668b5be013284a380a9de3fe4b637b3aca6ee
 
 /*****************************************************************************
  * Static data
@@ -448,6 +454,7 @@ static void set_external_pin_output(uint8_t pin_number)
 }
 
 
+<<<<<<< HEAD
 //-------------------------------UART----------------------------------------------------------
 
 
@@ -558,6 +565,8 @@ static void uart_init(void)
 
 
 
+=======
+>>>>>>> 62b668b5be013284a380a9de3fe4b637b3aca6ee
 int main(void)
 {
    ///UART

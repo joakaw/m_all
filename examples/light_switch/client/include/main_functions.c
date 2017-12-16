@@ -24,12 +24,19 @@ static uint8_t m_tid;
 uint8_t repeats = 2;
 
 
+<<<<<<< HEAD
+=======
+
+static void message_handler(uint32_t button_number){
+>>>>>>> 62b668b5be013284a380a9de3fe4b637b3aca6ee
 
 static void message_handler(uint8_t action, uint8_t door_number){
 
     uint8_t door_id = door_number - '0';
 
+
     uint32_t status = NRF_SUCCESS;
+<<<<<<< HEAD
 
     switch(action){
 
@@ -44,6 +51,32 @@ static void message_handler(uint8_t action, uint8_t door_number){
                       status = send_close(&m_clients[GROUP_CLIENT_INDEX], door_id);
                       __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "send close to server.\n");
                       break;
+=======
+    switch (button_number)
+    {
+        case 0: 
+          set_client_state(OPEN);
+          status = send_open(&m_clients[GROUP_CLIENT_INDEX], 1);
+          __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "send open to 1 server.\n");
+          break;
+        case 1:
+          set_client_state(CLOSED);
+          status = send_close(&m_clients[GROUP_CLIENT_INDEX], 1);
+          __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "send close to 1 server.\n");
+          break;
+        case 2:
+          set_client_state(OPEN);
+          status = send_open(&m_clients[GROUP_CLIENT_INDEX], 2);
+          __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "send open to 2 server.\n");
+            break;
+        case 3:
+          set_client_state(CLOSED);
+          status = send_close(&m_clients[GROUP_CLIENT_INDEX], 2);
+          __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "send close to 2 server.\n");
+            break;
+        default:
+            break;
+>>>>>>> 62b668b5be013284a380a9de3fe4b637b3aca6ee
 
     }
 
