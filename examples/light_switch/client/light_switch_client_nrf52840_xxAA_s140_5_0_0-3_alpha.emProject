@@ -141,7 +141,7 @@
     <file file_name="../include/main_structures.h" />
     <file file_name="../include/locks_controller.c" />
     <file file_name="../include/locks_controller.h" />
-<<<<<<< HEAD
+
     <folder Name="UART">
       <file file_name="../../../mesh/uart/app_uart_fifo.c" />
       <file file_name="../../../mesh/uart/retarget.c" />
@@ -151,8 +151,7 @@
       <file file_name="../../../mesh/drivers_nrf/common/nrf_drv_common.c" />
       <file file_name="../../../mesh/util/app_error_weak.c" />
     </folder>
-=======
->>>>>>> 62b668b5be013284a380a9de3fe4b637b3aca6ee
+
   </project>
   <configuration
     Name="Debug"
