@@ -48,7 +48,6 @@
 #include "nrf_mesh.h"
 #include "nrf_mesh_assert.h"
 #include "log.h"
-#include "main_structures.h"
 
 /*****************************************************************************
  * Static variables
@@ -56,7 +55,6 @@
 
 /** Keeps a single global TID for all transfers. */
 static uint8_t m_tid;
-char state[4];
 
 /*****************************************************************************
  * Static functions
@@ -156,16 +154,11 @@ static void handle_status_cb(access_model_handle_t handle, const access_message_
     char on_off_status_c = on_off_status+'0';
 
     app_uart_put('s');
+    app_uart_put('t');
     app_uart_put(':');
     app_uart_put(server_id_c);
     app_uart_put(on_off_status_c);
     app_uart_put('\n');
-
-
-
- 
-    
-
 
     p_client->status_cb(p_client, on_off_status, p_message->meta_data.src.value);
 }

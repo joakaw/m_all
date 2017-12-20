@@ -25,60 +25,29 @@ uint8_t repeats = 2;
 
 
 
-static void message_handler(uint8_t action, uint8_t door_number){
+static void message_handler(enum action_type action, uint8_t door_number){
 
     uint8_t door_id = door_number - '0';
-
-
     uint32_t status = NRF_SUCCESS;
 
 
     switch(action){
 
-            case 'o': 
+            case ACTION_OPEN: 
                       set_client_state(OPEN);
                       status = send_open(&m_clients[GROUP_CLIENT_INDEX], door_id);
                       __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "send open to server.\n");
                       break;
 
-            case 'c':
+            case ACTION_CLOSE:
                       set_client_state(CLOSED);
                       status = send_close(&m_clients[GROUP_CLIENT_INDEX], door_id);
                       __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "send close to server.\n");
                       break;
 
 
-
     }
 
-
-//
-//    switch (door_number)
-//    {
-//        case 0: 
-//          set_client_state(OPEN);
-//          status = send_open(&m_clients[GROUP_CLIENT_INDEX], 1);
-//          __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "send open to 1 server.\n");
-//          break;
-//        case 1:
-//          set_client_state(CLOSED);
-//          status = send_close(&m_clients[GROUP_CLIENT_INDEX], 1);
-//          __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "send close to 1 server.\n");
-//          break;
-//        case 2:
-//          set_client_state(OPEN);
-//          status = send_open(&m_clients[GROUP_CLIENT_INDEX], 2);
-//          __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "send open to 2 server.\n");
-//            break;
-//        case 3:
-//          set_client_state(CLOSED);
-//          status = send_close(&m_clients[GROUP_CLIENT_INDEX], 2);
-//          __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "send close to 2 server.\n");
-//            break;
-//        default:
-//            break;
-//
-//    }
 
     if (status == NRF_ERROR_INVALID_STATE ||
         status == NRF_ERROR_NO_MEM ||
@@ -150,5 +119,16 @@ uint32_t send_close(simple_on_off_client_t * p_client, uint16_t destination_id)
 static void set_client_state(enum lock_state state){
 
   set_lock_state(state);
+
+}
+
+
+enum action_type set_enum (uint8_t action){
+
+          switch(action){
+                case 'o': return ACTION_OPEN; break;
+                case 'c': return ACTION_CLOSE; break;
+                default: return WRONG_ACTION; break;
+          }
 
 }

@@ -7,8 +7,8 @@
 
 //Function to set proper state of lock. 
 //possible values of sate: OPEN, CLOSED
-void set_lock_state(enum lock_state state);
 
+void set_lock_state(enum lock_state state);
 
 
 #endif

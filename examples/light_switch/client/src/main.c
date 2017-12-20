@@ -471,22 +471,10 @@ void uart_event_handle(app_uart_evt_t * p_event)
             index++;
 
 
-            message_handler(data_array[0], data_array[1]);
 
 
-//
-//            if(data_array[0]=='o'){
-//                //set_lock_state(OPEN);
-//
-//
-//                
-//
-//                hal_led_pin_set(BSP_LED_1, true);
-//            }
-//            if(data_array[0]=='c'){
-//                set_lock_state(CLOSED);
-//                hal_led_pin_set(BSP_LED_1, false);
-//            }
+            message_handler(set_enum(data_array[0]), data_array[1]);
+
 
 
             if ((data_array[index - 1] == '\n') )

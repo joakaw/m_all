@@ -16,5 +16,6 @@ typedef struct __attribute((packed))
 
 
 enum lock_state {OPEN, CLOSED};
+enum action_type {ACTION_OPEN, ACTION_CLOSE, WRONG_ACTION};
 
 #endif
