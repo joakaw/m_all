@@ -64,7 +64,7 @@ static void message_handler(enum action_type action, uint8_t door_id){
  }
 
 
- uint32_t send_open(simple_on_off_client_t * p_client, uint16_t destination_id)
+ uint32_t send_open(simple_on_off_client_t * p_client, uint8_t destination_id)
 {
     message_main_t message_set_state;
     message_set_state.on_off = true;
@@ -90,7 +90,7 @@ static void message_handler(enum action_type action, uint8_t door_id){
 }
 
 
-uint32_t send_close(simple_on_off_client_t * p_client, uint16_t destination_id)
+uint32_t send_close(simple_on_off_client_t * p_client, uint8_t destination_id)
 {
     message_main_t message_set_state;
     message_set_state.on_off = false;

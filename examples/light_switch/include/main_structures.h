@@ -7,7 +7,7 @@
 
 typedef struct __attribute((packed))
 {
-    uint16_t destination_id;      /**< Destination ID. */
+    uint8_t destination_id;      /**< Destination ID. */
     uint8_t on_off;               /**< State to set. */
     uint8_t tid;                  /**< Transaction number. */
     

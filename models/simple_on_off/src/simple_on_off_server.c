@@ -74,7 +74,7 @@ static void reply_status(const simple_on_off_server_t * p_server,
  *****************************************************************************/
 
 static void publish_state(simple_on_off_server_t * p_server, bool value)
-{   extern uint16_t global_server_id;
+{   extern uint8_t global_server_id;
     status_message_t status;
     status.present_on_off = value ? 1 : 0;
     status.server_id = global_server_id;
@@ -108,18 +108,18 @@ static void handle_get_cb(access_model_handle_t handle, const access_message_rx_
 
 static void handle_set_unreliable_cb(access_model_handle_t handle, const access_message_rx_t * p_message, void * p_args)
 {
-    extern uint16_t global_server_id;
+    extern uint8_t global_server_id;
 
-    uint16_t dest_id = (((message_main_t*) p_message->p_data)->destination_id); //check if message is dedicated to this server
-    bool value = (((message_main_t*) p_message->p_data)->on_off) > 0;
+    uint8_t dest_id = (((message_main_t*) p_message->p_data)->destination_id); //check if message is dedicated to this server
+    bool state = (((message_main_t*) p_message->p_data)->on_off) > 0;
     simple_on_off_server_t * p_server = p_args;
     if(dest_id == global_server_id)
     {
       
       NRF_MESH_ASSERT(p_server->set_cb != NULL);   
-      value = p_server->set_cb(p_server, value);
+      state = p_server->set_cb(p_server, state);
  
-      if(value == true){                                                          //execute opening
+      if(state == true){                                                          //execute opening
  
            set_lock_state(OPEN);
         
@@ -128,7 +128,7 @@ static void handle_set_unreliable_cb(access_model_handle_t handle, const access_
            set_lock_state(CLOSED);
        }
 
-      publish_state(p_server, value);
+      publish_state(p_server, state);
     }
     
 }

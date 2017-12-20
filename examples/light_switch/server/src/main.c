@@ -75,7 +75,7 @@
  *****************************************************************************/
 
 static simple_on_off_server_t m_server;
-uint16_t global_server_id = 2;
+uint8_t global_server_id = 2;
 
 /* Forward declaration */
 static bool get_cb(const simple_on_off_server_t * p_server);

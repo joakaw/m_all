@@ -72,7 +72,7 @@ typedef struct __attribute((packed))
 {
     uint8_t on_off; /**< State to set. */
     uint8_t tid;    /**< Transaction number. */
-    uint16_t destination_id; /**< destination device id to send. */
+    uint8_t destination_id; /**< destination device id to send. */
 } message_to_send_via_mesh_t;
 
 /** Message format for th Simple OnOff Set Unreliable message. */
@@ -93,7 +93,7 @@ typedef struct __attribute((packed))
 typedef struct __attribute((packed))
 {
     uint8_t present_on_off; /**< Current state. */
-    uint16_t server_id;
+    uint8_t server_id;
 } status_message_t;
 
 
