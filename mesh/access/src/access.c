@@ -308,6 +308,7 @@ static void mesh_msg_handle(nrf_mesh_evt_message_t * p_evt)
             .meta_data.ttl = p_evt->ttl,
             .meta_data.appkey_handle = appkey_handle
         };
+
     /*lint -restore */
 
     handle_incoming(&message);

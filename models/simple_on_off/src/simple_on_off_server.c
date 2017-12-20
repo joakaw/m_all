@@ -74,9 +74,10 @@ static void reply_status(const simple_on_off_server_t * p_server,
  *****************************************************************************/
 
 static void publish_state(simple_on_off_server_t * p_server, bool value)
-{
-    simple_on_off_msg_status_t status;
+{   extern uint16_t global_server_id;
+    status_message_t status;
     status.present_on_off = value ? 1 : 0;
+    status.server_id = global_server_id;
     access_message_tx_t msg;
     msg.opcode.opcode = SIMPLE_ON_OFF_OPCODE_STATUS;
     msg.opcode.company_id = ACCESS_COMPANY_ID_NORDIC;
@@ -111,10 +112,10 @@ static void handle_set_unreliable_cb(access_model_handle_t handle, const access_
 
     uint16_t dest_id = (((message_main_t*) p_message->p_data)->destination_id); //check if message is dedicated to this server
     bool value = (((message_main_t*) p_message->p_data)->on_off) > 0;
-
+    simple_on_off_server_t * p_server = p_args;
     if(dest_id == global_server_id)
     {
-      simple_on_off_server_t * p_server = p_args;
+      
       NRF_MESH_ASSERT(p_server->set_cb != NULL);   
       value = p_server->set_cb(p_server, value);
  
@@ -129,6 +130,7 @@ static void handle_set_unreliable_cb(access_model_handle_t handle, const access_
 
       publish_state(p_server, value);
     }
+    
 }
 
 

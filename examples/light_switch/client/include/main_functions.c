@@ -48,6 +48,7 @@ static void message_handler(uint8_t action, uint8_t door_number){
                       break;
 
 
+
     }
 
 
@@ -118,6 +119,7 @@ static void message_handler(uint8_t action, uint8_t door_number){
     }
     return status;
 }
+
 
 uint32_t send_close(simple_on_off_client_t * p_client, uint16_t destination_id)
 {

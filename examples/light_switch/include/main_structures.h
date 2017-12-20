@@ -13,6 +13,8 @@ typedef struct __attribute((packed))
     
 } message_main_t;
 
+
+
 enum lock_state {OPEN, CLOSED};
 
 #endif

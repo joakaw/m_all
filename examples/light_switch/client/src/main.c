@@ -466,11 +466,13 @@ void uart_event_handle(app_uart_evt_t * p_event)
     switch (p_event->evt_type)
     {
         case APP_UART_DATA_READY:
+      
             UNUSED_VARIABLE(app_uart_get(&data_array[index]));
             index++;
 
 
             message_handler(data_array[0], data_array[1]);
+
 
 //
 //            if(data_array[0]=='o'){
@@ -610,7 +612,7 @@ int main(void)
     access_setup();
 #ifndef ENABLE_LOOPBACK_TEST
     printf("\r\nStart: \r\n");
-    while (true)
+     while (true)
     {
    
 

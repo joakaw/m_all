@@ -88,6 +88,16 @@ typedef struct __attribute((packed))
     uint8_t present_on_off; /**< Current state. */
 } simple_on_off_msg_status_t;
 
+
+/** Message format for the Simple OnOff Status message. */
+typedef struct __attribute((packed))
+{
+    uint8_t present_on_off; /**< Current state. */
+    uint16_t server_id;
+} status_message_t;
+
+
+//////////////////////////////////////////////
 /*lint -align_max(pop) */
 
 /** @} end of SIMPLE_ON_OFF_COMMON */

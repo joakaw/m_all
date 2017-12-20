@@ -47,6 +47,8 @@
 #include "device_state_manager.h"
 #include "nrf_mesh.h"
 #include "nrf_mesh_assert.h"
+#include "log.h"
+#include "main_structures.h"
 
 /*****************************************************************************
  * Static variables
@@ -54,6 +56,7 @@
 
 /** Keeps a single global TID for all transfers. */
 static uint8_t m_tid;
+char state[4];
 
 /*****************************************************************************
  * Static functions
@@ -91,10 +94,12 @@ static bool is_valid_source(const simple_on_off_client_t * p_client,
     /* Check the originator of the status. */
     dsm_handle_t publish_handle;
     nrf_mesh_address_t publish_address;
+   
     if (access_model_publish_address_get(p_client->model_handle, &publish_handle) != NRF_SUCCESS ||
         publish_handle == DSM_HANDLE_INVALID ||
         dsm_address_get(publish_handle, &publish_address) != NRF_SUCCESS ||
         publish_address.value != p_message->meta_data.src.value)
+       
     {
         return false;
     }
@@ -137,10 +142,31 @@ static void handle_status_cb(access_model_handle_t handle, const access_message_
         return;
     }
 
-    simple_on_off_msg_status_t * p_status =
-        (simple_on_off_msg_status_t *) p_message->p_data;
+    status_message_t * p_status =
+        (status_message_t *) p_message->p_data;
     simple_on_off_status_t on_off_status = (p_status->present_on_off ?
                                               SIMPLE_ON_OFF_STATUS_ON : SIMPLE_ON_OFF_STATUS_OFF);
+                                    
+
+    status_message_t * p_status_id = (status_message_t *) p_message->p_data;
+    uint16_t server_id = (p_status_id->server_id);
+     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "State of server: %d is: %d", server_id, on_off_status);
+    
+    char server_id_c = server_id+'0';
+    char on_off_status_c = on_off_status+'0';
+
+    app_uart_put('s');
+    app_uart_put(':');
+    app_uart_put(server_id_c);
+    app_uart_put(on_off_status_c);
+    app_uart_put('\n');
+
+
+
+ 
+    
+
+
     p_client->status_cb(p_client, on_off_status, p_message->meta_data.src.value);
 }
 
