@@ -334,57 +334,6 @@ static void health_event_cb(const health_client_t * p_client, const health_clien
     }
 }
 
-/*static void button_event_handler(uint32_t button_number)
-{
-    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Button %u pressed\n", button_number);
-    if (m_configured_devices == 0)
-    {
-        __LOG(LOG_SRC_APP, LOG_LEVEL_WARN, "No devices provisioned\n");
-        return;
-    }
-    else if (m_configured_devices <= button_number && button_number != BUTTON_NUMBER_GROUP)
-    {
-        __LOG(LOG_SRC_APP, LOG_LEVEL_WARN, "Device %u not provisioned yet.\n", button_number);
-        return;
-    }
-
-    uint32_t status = NRF_SUCCESS;
-    switch (button_number)
-    {
-        case 0: 
-          status = send_open_unreliable(&m_clients[GROUP_CLIENT_INDEX], 1 , 2);
-          break;
-        case 1:
-          status = send_close_unreliable(&m_clients[GROUP_CLIENT_INDEX], 1 , 2);
-          break;
-        case 2:
-        status = send_open_unreliable(&m_clients[GROUP_CLIENT_INDEX], 2 , 2);
-      
-           status = simple_on_off_client_set(&m_clients[button_number],
-                                              !hal_led_pin_get(BSP_LED_0 + button_number));
-            break;
-        case 3:
-        status = send_close_unreliable(&m_clients[GROUP_CLIENT_INDEX], 2 , 2);
-          
-                                                      !hal_led_pin_get(BSP_LED_0 + button_number), 3);
-            break;
-        default:
-            break;
-
-    }
-
-    if (status == NRF_ERROR_INVALID_STATE ||
-        status == NRF_ERROR_NO_MEM ||
-        status == NRF_ERROR_BUSY)
-    {
-        __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Cannot send. Device is busy.\n");
-        hal_led_blink_ms(LEDS_MASK, 50, 4);
-    }
-    else
-    {
-        ERROR_CHECK(status);
-    }
-}*/
 
 /*****************************************************************************
  * Event callbacks from the provisioner
@@ -470,11 +419,7 @@ void uart_event_handle(app_uart_evt_t * p_event)
             UNUSED_VARIABLE(app_uart_get(&data_array[index]));
             index++;
 
-
-
-
-            message_handler(set_enum(data_array[0]), data_array[1]);
-
+            message_handler(set_enum(data_array[0]), data_array[1] - '0'); //changing door id from char to int
 
 
             if ((data_array[index - 1] == '\n') )
@@ -598,23 +543,21 @@ int main(void)
     hal_led_pin_set(BSP_LED_0, true);
     mesh_core_setup();
     access_setup();
+
 #ifndef ENABLE_LOOPBACK_TEST
     printf("\r\nStart: \r\n");
+
+
+
+
      while (true)
     {
    
 
-//        int key = SEGGER_RTT_GetKey(); /* Returns -1 if there is no data. */
-//        if (key >= '0' && key <= '3')
-//        {
-//            uint32_t button_number = key - '0';
-//            message_handler(button_number);
-//        }
         (void)nrf_mesh_process();
 
           uint8_t cr;
-       // while (app_uart_get(&cr) != NRF_SUCCESS);
-      //  while (app_uart_put(cr) != NRF_SUCCESS);
+
     }
     #endif
 }

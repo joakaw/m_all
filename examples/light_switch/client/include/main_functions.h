@@ -9,7 +9,7 @@
 
 
 
-static void message_handler(enum action_type action, uint8_t door_number);
+static void message_handler(enum action_type action, uint8_t door_id);
 
 static void set_client_state(enum lock_state state);
 

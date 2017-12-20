@@ -25,9 +25,9 @@ uint8_t repeats = 2;
 
 
 
-static void message_handler(enum action_type action, uint8_t door_number){
+static void message_handler(enum action_type action, uint8_t door_id){
 
-    uint8_t door_id = door_number - '0';
+   
     uint32_t status = NRF_SUCCESS;
 
 
