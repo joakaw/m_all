@@ -36,13 +36,13 @@ static void message_handler(enum action_type action, uint8_t door_id){
             case ACTION_OPEN: 
                       set_client_state(OPEN);
                       status = send_open(&m_clients[GROUP_CLIENT_INDEX], door_id);
-                      __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "send open to server.\n");
+                      __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Send 'open' to server.\n");
                       break;
 
             case ACTION_CLOSE:
                       set_client_state(CLOSED);
                       status = send_close(&m_clients[GROUP_CLIENT_INDEX], door_id);
-                      __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "send close to server.\n");
+                      __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Send 'close' to server.\n");
                       break;
 
 
